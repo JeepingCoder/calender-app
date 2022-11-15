@@ -10,20 +10,48 @@ var mainDate = date.toLocaleDateString("en-US", options);
 dateDisplay.textContent = mainDate; 
 
 
+
 //when user inputs a message they should be able to click the save button.
 //when saved the data should log to the page and when page is refreshed the date should still be there
-
+// var getItem = localStorage.getItem(chronos);
 // get current time to read
     var currentTime = date.getHours();
     console.log(currentTime)
 // index through time on the page then compare to see what the actual time is
-    var time = ['9', '10', '11', '12', '1', '2', '3', '4', '5'];
+    var time = ['hour-9', 'hour-10', 'hour-11', 'hour-12', 'hour-1', 'hour-2', 'hour-3', 'hour-4', 'hour-5'];
     for (var i = 0; i < time.length; i++){
       console.log(time.length)
     }
+//make a function that saves to local storage
+// $(function(){
+
+// saveBtnEl.on('click',function(){
+//     todo =$(this).siblings('.description').val()
+//         var hour = $(this).parent().attr('id');
+//         localStorage.setItem(hour, todo);
+//     }
+// );  
+
+// $('.timeblock').each(function (){
+//     var hourBlock = parseInt($(this).attr('id').split('_')[1]);
+//     if (hourBlock < dayjs().hour()){
+//         $(this).addClass('past');
+//     } else if (hourBlock > dayjs().hour()){
+//         $(this).addClass('future');
+//     } else{
+//         $(this).addClass('present')
+//     }    
+//     });
+
+//function to call storage
+
+//each button needs a save button class. all can apply to eventlistener,
+// but can relate to different functions click on save button then apply 
+//it to a whole class with 9am text button save button , class with save button text area and save button
+
 //when actual time is found mark as current with color gray using an if statement?
 // use Json here to extract time to compare the 2 times. 
-if ('time' == 'currentTime')
+// if ('time' == 'currentTime')
 // then mark time in future mark green use a function to change color
 
 // then time in past mark red use a function to change color 
