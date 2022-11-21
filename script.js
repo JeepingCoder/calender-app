@@ -2,46 +2,103 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 
-// make date load to top of calender 
+ 
 var dateDisplay = document.querySelector('.dateDisplay')
 var date = new Date()
 var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 var mainDate = date.toLocaleDateString("en-US", options);
+// var hourNine = document.getElementById("hour-9")
+// var hourTen = document.getElementById("hour-10")
+// var hourEleven = document.getElementById("hour-11")
+// var hourTwelve = document.getElementById("hour-12")
+// var hourOne = document.getElementById("hour-1")
+// var hourTwo = document.getElementById("hour-2")
+// var hourThre = document.getElementById("hour-3")
+// var hourFour = document.getElementById("hour-4")
+// var hourFive = document.getElementById("hour-5")
+// var saveBtnEl = document.querySelector('button')
+// var textNine = document.getElementById('text-9')
+// var textTen = document.getElementById('text-10')
+// var textEleven = document.getElementById('text-11')
+// var textTwelve = document.getElementById('text-12')
+// var textOne = document.getElementById('text-1')
+// var textTwo = document.getElementById('text-2')
+// var textThree = document.getElementById('text-3')
+// var textFour = document.getElementById('text-4')
+// var textFive = document.getElementById('text-5')
+
+// make date load to top of calender
 dateDisplay.textContent = mainDate; 
 
 
 
-//when user inputs a message they should be able to click the save button.
+
+
+
+
 //when saved the data should log to the page and when page is refreshed the date should still be there
 // var getItem = localStorage.getItem(chronos);
 // get current time to read
     var currentTime = date.getHours();
     console.log(currentTime)
 // index through time on the page then compare to see what the actual time is
-    var time = ['hour-9', 'hour-10', 'hour-11', 'hour-12', 'hour-1', 'hour-2', 'hour-3', 'hour-4', 'hour-5'];
-    for (var i = 0; i < time.length; i++){
-      console.log(time.length)
-    }
-//make a function that saves to local storage
-// $(function(){
+ //when user inputs a message they should be able to click the save button   
+    let allTextareas = document.querySelectorAll(".description")
+    let saveBtn = document.querySelectorAll(".saveBtn")
+    
+for (var i = 0; i < saveBtn.length; i++){
+    saveBtn[i].addEventListener("click", function(event){
+       let textValue = event.target.previousElementSibling.value;
+       let textId = event.target.previousElementSibling.id;
+       // console.log(this.previousElementSibling.value)
 
-// saveBtnEl.on('click',function(){
-//     todo =$(this).siblings('.description').val()
+localStorage.setItem(textId,textValue)
+
+    })
+}
+
+function checkTime(){
+
+
+    console.log(allTextareas)
+
+    for (var i = 0; i < allTextareas.length; i++){
+
+      var timeColor = allTextareas[i].id.split("-")[1]
+      var colorCode = moment().hour()
+
+      let textId = allTextareas[i].id
+      allTextareas[i].value = localStorage.getItem(textId)
+
+      console.log(timeColor, colorCode)
+    if(timeColor === colorCode){
+        allTextareas[i].className = 'present'
+        // console.log("this would log as a current time")
+    }else if(timeColor < colorCode){
+        allTextareas[i].className = "past"
+    } else {
+        allTextareas[i].className = "future"
+
+    }
+        
+    }
+}
+
+function init(){
+    checkTime();
+}
+
+init()
+    // localStorage.getItem()
+// make a function that saves to local storage
+//     $(function(){saveBtnEl.on('click',function(){
+//         todo =$(this).siblings('.description').val()
 //         var hour = $(this).parent().attr('id');
 //         localStorage.setItem(hour, todo);
 //     }
-// );  
+// );
 
-// $('.timeblock').each(function (){
-//     var hourBlock = parseInt($(this).attr('id').split('_')[1]);
-//     if (hourBlock < dayjs().hour()){
-//         $(this).addClass('past');
-//     } else if (hourBlock > dayjs().hour()){
-//         $(this).addClass('future');
-//     } else{
-//         $(this).addClass('present')
-//     }    
-//     });
+
 
 //function to call storage
 
@@ -56,31 +113,8 @@ dateDisplay.textContent = mainDate;
 
 // then time in past mark red use a function to change color 
 
-
-
-
-
-
-    //  $(function(){
-    //   var time = new Date(),
-    //   currentDate = date.getHours;
-    //   currentDate=Date.parse(currentDate);
-    //   $(".grid-item").each(function(){
-    //      var specifiedDate = $(this).data('date');
-    //      specifiedDate=Date.parse(specifiedDate);
-    //      if (specifiedDate == currentDate){
-    //        $(this).addClass('today');
-    //      }else if (currentDate > specifiedDate){
-    //        $(this).addClass('past');
-    //      }else{
-    //        $(this).addClass('future');
-    //      }
-
-        //  var time = ['hour-9', 'hour-10', 'hour-11', 'hour-12', 'hour-1', 'hour-2', 'hour-3', 'hour-4', 'hour-5'];
-        //  for (var i = 0; i < time.length; i++) {
-     
-        //  }  
-    //time block time//loop through the block times by its class name
+ 
+    // time block time//loop through the block times by its class name
     
 
     //forEach
@@ -95,14 +129,8 @@ dateDisplay.textContent = mainDate;
 
 
 
-
-
-    //$(function () {
-    // function showResponse(event) {
-    //   event.preventDefault();
-    //   console.log(event)
-
-    // }
+// document.addEventListener('DOMConetentLoaded' ,()=>{
+//     document.getElementById('btn').addEventListener('click', button);
 
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
@@ -121,4 +149,4 @@ dateDisplay.textContent = mainDate;
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
-  // TODO: Add code to display the current date in the header of the page.
+  // TODO: Add code to display the current date in the header of the page.**
